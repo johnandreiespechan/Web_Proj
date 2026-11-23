@@ -1,0 +1,321 @@
+/* ---------- Basics ---------- */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #1b2530;
+  --muted: #5b6876;
+  --line: #dde3e9;
+  --accent: #0f6e66;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Makes the "hidden" attribute always win */
+[hidden] {
+  display: none !important;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 26px;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+/* ---------- Navigation bar ---------- */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 32px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 0;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  padding: 18px 2px 15px;
+  color: var(--muted);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover {
+  color: var(--ink);
+}
+
+nav a.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Page layout ---------- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.stack {
+  margin-bottom: 16px;
+}
+
+/* ---------- Filters and form fields ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+select,
+input[type="text"],
+input[type="date"] {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #c5cfd8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+}
+
+/* ---------- KPI cards ---------- */
+.kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.kpi-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.kpi-value {
+  margin: 4px 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- Charts ---------- */
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.charts .wide {
+  flex: 2 1 520px;
+  min-width: 0;
+}
+
+.charts .narrow {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+/* Chart.js needs a box with a set height */
+.chart-box {
+  position: relative;
+  height: 320px;
+}
+
+.hint {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.empty {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  background: #fff7e0;
+  border: 1px solid #ecd9a0;
+  border-radius: 8px;
+  color: #6b4b00;
+}
+
+.error {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #fde6e3;
+  border: 1px solid #f0b5ae;
+  border-radius: 8px;
+  color: #8f1f15;
+}
+
+/* ---------- Table ---------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: #f7f9fb;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-ok {
+  background: #e3f4eb;
+  color: #14683f;
+}
+
+.badge-low {
+  background: #fff1d6;
+  color: #7a4b00;
+}
+
+.badge-out {
+  background: #fde6e3;
+  color: #a3261b;
+}
+
+/* ---------- Settings and Info ---------- */
+.form {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #c5cfd8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.prose {
+  max-width: 720px;
+}
+
+.prose h2:not(:first-child) {
+  margin-top: 20px;
+}
+
+.prose p,
+.prose ol {
+  margin: 0 0 8px;
+}

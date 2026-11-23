@@ -1,0 +1,37 @@
+item,branch,unit,stock_on_hand,reorder_level
+Espresso Beans,Branch 1,kg,14,8
+Fresh Milk,Branch 1,L,22,40
+Milk Tea Powder,Branch 1,kg,16,10
+Tapioca Pearls,Branch 1,kg,5,12
+Matcha Powder,Branch 1,kg,4,3
+Caramel Syrup,Branch 1,bottles,9,6
+Brown Sugar Syrup,Branch 1,bottles,3,8
+Mango Puree,Branch 1,kg,7,6
+Plastic Cups 16oz,Branch 1,pcs,1450,600
+Dome Lids,Branch 1,pcs,1320,600
+Straws,Branch 1,pcs,540,800
+Ice,Branch 1,bags,38,25
+Espresso Beans,Branch 2,kg,6,8
+Fresh Milk,Branch 2,L,55,40
+Milk Tea Powder,Branch 2,kg,11,10
+Tapioca Pearls,Branch 2,kg,14,12
+Matcha Powder,Branch 2,kg,2,3
+Caramel Syrup,Branch 2,bottles,7,6
+Brown Sugar Syrup,Branch 2,bottles,12,8
+Mango Puree,Branch 2,kg,0,6
+Plastic Cups 16oz,Branch 2,pcs,820,600
+Dome Lids,Branch 2,pcs,910,600
+Straws,Branch 2,pcs,1600,800
+Ice,Branch 2,bags,30,25
+Espresso Beans,Branch 3,kg,9,8
+Fresh Milk,Branch 3,L,31,40
+Milk Tea Powder,Branch 3,kg,8,10
+Tapioca Pearls,Branch 3,kg,15,12
+Matcha Powder,Branch 3,kg,5,3
+Caramel Syrup,Branch 3,bottles,4,6
+Brown Sugar Syrup,Branch 3,bottles,9,8
+Mango Puree,Branch 3,kg,8,6
+Plastic Cups 16oz,Branch 3,pcs,380,600
+Dome Lids,Branch 3,pcs,470,600
+Straws,Branch 3,pcs,1100,800
+Ice,Branch 3,bags,12,25

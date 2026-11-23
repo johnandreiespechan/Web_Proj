@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Coffee Shop Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js draws the charts. It is loaded from a CDN, so you need internet. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" id="brandName">My Coffee Shop</div>
+      <nav id="nav" aria-label="Main">
+        <a href="#dashboard" data-view="dashboard">Dashboard</a>
+        <a href="#inventory" data-view="inventory">Inventory</a>
+        <a href="#settings" data-view="settings">Settings</a>
+        <a href="#info" data-view="info">Info</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="loadError" class="error" role="alert" hidden></div>
+
+    <!-- DASHBOARD -->
+    <section id="view-dashboard" class="view">
+      <h1>Dashboard</h1>
+
+      <div class="filters">
+        <div class="field">
+          <label for="branchFilter">Branch</label>
+          <select id="branchFilter">
+            <option value="all">All</option>
+            <option value="Branch 1">Branch 1</option>
+            <option value="Branch 2">Branch 2</option>
+            <option value="Branch 3">Branch 3</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="timeFilter">Timeline</label>
+          <select id="timeFilter">
+            <option value="all">All</option>
+            <option value="range">From/To</option>
+          </select>
+        </div>
+
+        <!-- Shown only when Timeline = From/To -->
+        <div class="range" id="rangeInputs" hidden>
+          <div class="field">
+            <label for="fromDate">From</label>
+            <input type="date" id="fromDate">
+          </div>
+          <div class="field">
+            <label for="toDate">To</label>
+            <input type="date" id="toDate">
+          </div>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="card kpi">
+          <div class="kpi-label">Total revenue</div>
+          <div class="kpi-value" id="kpiRevenue">-</div>
+          <div class="kpi-sub" id="kpiRevenueSub">&nbsp;</div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-label">Total cups sold</div>
+          <div class="kpi-value" id="kpiCups">-</div>
+          <div class="kpi-sub" id="kpiCupsSub">&nbsp;</div>
+        </div>
+        <div class="card kpi">
+          <div class="kpi-label">Online orders (GrabFood, foodpanda)</div>
+          <div class="kpi-value" id="kpiOnline">-</div>
+          <div class="kpi-sub" id="kpiOnlineSub">&nbsp;</div>
+        </div>
+      </div>
+
+      <p id="noData" class="empty" hidden>No orders match these filters.</p>
+
+      <div class="charts">
+        <div class="card wide">
+          <h2>Sales over time</h2>
+          <div class="chart-box"><canvas id="salesChart"></canvas></div>
+        </div>
+        <div class="card narrow">
+          <h2>Top 3 products (cups sold)</h2>
+          <div class="chart-box"><canvas id="topProductsChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section id="view-inventory" class="view" hidden>
+      <h1>Inventory</h1>
+
+      <div class="filters">
+        <div class="field">
+          <label for="invBranch">Branch</label>
+          <select id="invBranch">
+            <option value="all">All</option>
+            <option value="Branch 1">Branch 1</option>
+            <option value="Branch 2">Branch 2</option>
+            <option value="Branch 3">Branch 3</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card stack">
+        <h2>Top 5 lowest stock</h2>
+        <p class="hint" id="lowStockHint"></p>
+        <div class="chart-box"><canvas id="lowStockChart"></canvas></div>
+      </div>
+
+      <div class="card stack">
+        <h2>Stock data</h2>
+        <div class="table-wrap">
+          <table id="stockTable">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Branch</th>
+                <th class="num">Stock on hand</th>
+                <th class="num">Reorder level</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="stockBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="view-settings" class="view" hidden>
+      <h1>Settings</h1>
+      <form id="settingsForm" class="card form">
+        <div class="field">
+          <label for="shopName">Shop name</label>
+          <input type="text" id="shopName" maxlength="40">
+        </div>
+        <div class="field">
+          <label for="currency">Currency symbol</label>
+          <input type="text" id="currency" maxlength="3">
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn primary">Save</button>
+          <button type="button" class="btn" id="resetSettings">Reset to default</button>
+        </div>
+        <p class="hint" id="settingsMsg" role="status"></p>
+      </form>
+    </section>
+
+    <!-- INFO -->
+    <section id="view-info" class="view" hidden>
+      <h1>Info</h1>
+      <div class="card prose">
+        <h2>About this project</h2>
+        <p>A mock sales and inventory dashboard for a coffee shop with three branches. It uses only HTML, CSS and JavaScript. All data is sample data.</p>
+
+        <h2>Data files</h2>
+        <p><strong>orders.csv</strong> has one row per order: order_id, date, branch, product, cups, unit_price, channel.</p>
+        <p><strong>inventory.csv</strong> has one row per item per branch: item, branch, unit, stock_on_hand, reorder_level.</p>
+
+        <h2>How the dashboard works</h2>
+        <ol>
+          <li>The page loads both CSV files when it opens.</li>
+          <li>The Branch and Timeline dropdowns decide which order rows are kept.</li>
+          <li>The KPIs and charts are calculated from the kept rows.</li>
+          <li>Changing a dropdown repeats steps 2 and 3.</li>
+        </ol>
+        <p>Online orders are orders whose channel is GrabFood or foodpanda. To use your own data, replace the two CSV files and keep the same column names.</p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
